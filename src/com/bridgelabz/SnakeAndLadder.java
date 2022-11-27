@@ -1,32 +1,35 @@
 package com.bridgelabz;
 
-import java.util.Scanner;
 
 public class SnakeAndLadder {
     public static void main(String[] args) {
+        int position=0;
+        int count=0;
+        while(position<=100) {
+            count++;
+            int snake = (int) Math.floor(Math.random() * 10) % 3;
+            int check = (int) Math.floor(Math.random() * 10) % 7;
+            if (snake == 1) {
+                //Move Forward
+                position = position + check;
+            } else if (snake == 2) {
+                //Move Back
+                position = position - check;
+                if (position < 0) {
+                    position = 0;
+                }
+            } else {
+                //No Play
+                count = count - 1;
 
-        int currentPosition = 96;
-        int snake = (int) Math.floor(Math.random() * 10) % 3;
-        int checkPosition = (int) Math.floor(Math.random() * 10) % 6 + 1;
-        if (snake == 1) {
-            currentPosition = currentPosition + checkPosition;
-            if (currentPosition <= 100)
-                System.out.println("Ladder Option Moves Ahead " + currentPosition);
-        } else if (snake == 2) {
-            currentPosition = currentPosition - checkPosition;
-            System.out.println("Snake Option Moves Behind " + currentPosition);
-        } else {
-            currentPosition = currentPosition;
-            System.out.println("No Play");
-        }
-        if (currentPosition <= 100)
-            System.out.println("current postion after die throw is: " + currentPosition);
-        else
-            System.out.println("Throw Die Again");
-        while (currentPosition==100){
-            System.out.println("Game Win");
-            break;
+            }
+            System.out.println("No of times dice roll is : " + count);
+            System.out.println("current postion  is: " + position);
+            if(position==100) {
+                position = position - check;
+                break;
+
+            }
         }
     }
-
 }
